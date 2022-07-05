@@ -1,6 +1,4 @@
 import { get } from "./utils";
-import "./style/main.less";
-import { add } from "./example";
 const { version } = require("../package.json");
 
 const interval = 1000 * 20;
@@ -46,12 +44,13 @@ async function show() {
 
 async function ping() {
   const res = await get<{ ping: string }>("/crawl/crawl/get-user-list", {});
-
-  const heads = Array.from(document.getElementsByClassName("head"));
-  heads.forEach((head) => {
-    head.style.backgroundColor = "none";
-    window.document.title = "爬虫管理系统";
-  });
+  if (res.status === 200) {
+    const heads = Array.from(document.getElementsByClassName("head"));
+    heads.forEach((head) => {
+      head.style.backgroundColor = "";
+      window.document.title = "爬虫管理系统";
+    });
+  }
 }
 
 async function close() {

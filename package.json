@@ -3,8 +3,8 @@
   "description": "Build your UserScript with webpack",
   "version": "0.0.2",
   "author": {
-    "name": "fts",
-    "email": "fts@gmail.com"
+    "name": "fangtiansheng",
+    "email": "fangtiansheng@gmail.com"
   },
   "scripts": {
     "postversion": "git push --follow-tags",
