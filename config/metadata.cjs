@@ -7,7 +7,7 @@ module.exports = {
   author: author,
   source: repository.url,
   icon: "https://www.valuesimplex.com/images/favicon.ico",
-  // 'license': 'MIT',
+  'license': 'MIT',
   match: [
     '*://*/*'
   ],
@@ -18,9 +18,6 @@ module.exports = {
   ],
   grant: [
     'GM.xmlHttpRequest'
-  ],
-  connect: [
-    'httpbin.org'
   ],
   'run-at': 'document-end'
 }
