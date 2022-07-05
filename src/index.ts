@@ -3,7 +3,6 @@ const { version } = require("../package.json");
 
 const interval = 1000 * 20;
 
-
 async function init() {
   console.log(
     `%c 泛采系统专业版插件 %c v${version} %c`,
@@ -17,20 +16,16 @@ async function robots() {
   const _title = window.document.title;
   const res = await get<{ robots: string }>("/robots.txt", {});
   if (res.status === 200) {
-    console.log(`🔔发现网站有robots.txt文件：${res.request.responseURL}`);
+    console.log(`🔔发现网站有robots.txt文件: ${res.request.responseURL}`);
     window.document.title = "🤖" + _title;
-  } else {
-    console.log(`🔔未发现网站有robots.txt文件`);
   }
 }
 
 async function sitemap() {
   const res = await get<{ sitemap: string }>("/sitemap.xml", {});
   if (res.status === 200) {
-    console.log(`🔔发现网站有sitemap.xml文件：${res.request.responseURL}`);
+    console.log(`🔔发现网站有sitemap.xml文件: ${res.request.responseURL}`);
     window.document.title = "🌎" + window.document.title;
-  } else {
-    console.log(`🔔未发现网站有sitemap.xml文件`);
   }
 }
 
@@ -95,11 +90,12 @@ async function check_meta_tags() {
   let title = window.document.title;
   if (document.getElementsByName("ArticleTitle").length) {
     console.log('.//*[@name="ArticleTitle"]/@content');
+    window.document.title = "❤️" + window.document.title;
     setInterval(function () {
-      if (window.document.title.startsWith("🔴")) {
-        window.document.title = "⚪️" + title;
+      if (window.document.title.startsWith("❤️")) {
+        window.document.title = "🇨🇳" + title;
       } else {
-        window.document.title = "🔴" + title;
+        window.document.title = "❤️" + title;
       }
     }, 600);
   }
@@ -127,17 +123,20 @@ async function check_meta_tags() {
   // Wordpress站点发布日期meta标签检测
   let meta_pubdate = document.querySelectorAll('meta[content^="202"]');
   if (meta_pubdate.length > 0) {
-    meta_pubdate.forEach(function (each) {
-      console.log(each);
-    });
-    console.log('.//*[contains(@property, "article:published")]/@content');
-    setInterval(function () {
-      if (window.document.title.startsWith("🟢")) {
-        window.document.title = "🟡️" + title;
-      } else {
-        window.document.title = "🟢" + title;
+    meta_pubdate.forEach(function (each, i) {
+      console.log("带有时间格式的meta标签" + i + ":", each);
+      if (each.property && each.property.startsWith("article:")) {
+        window.document.title = "💚" + window.document.title;
+        setInterval(function () {
+          if (window.document.title.startsWith("💚")) {
+            window.document.title = "🇺🇸" + title;
+          } else {
+            window.document.title = "💚" + title;
+          }
+        }, 600);
+        console.log('.//*[contains(@property, "article:published")]/@content');
       }
-    }, 600);
+    });
   }
 }
 class Ping {
@@ -158,17 +157,18 @@ class Ping {
 
 async function main() {
   if (location.hostname.startsWith("confluence")) {
-    await show()
+    await show();
   } else {
     if (window.document.location.href.endsWith("#/home/crawl")) {
-      await init()
-      await close()
-      await save()
-      let app = new Ping()
-      app.check()
+      await init();
+      await close();
+      await save();
+      let app = new Ping();
+      app.check();
     } else {
-      await robots()
-      await sitemap()
+      await robots().catch((e) => `🔔未发现网站有robots.txt文件`);
+      await sitemap().catch((e) => `🔔未发现网站有sitemap.xml文件`);
+      await check_meta_tags().catch((e) => e);
     }
   }
 }
