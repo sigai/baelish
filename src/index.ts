@@ -68,6 +68,7 @@ async function close() {
       }
     }
   });
+  console.log("🔔baelish: ESC绑定成功");
 }
 
 async function save() {
@@ -83,6 +84,7 @@ async function save() {
       button.getElementsByTagName("button")[0].click();
     }
   });
+  console.log("🔔baelish: ESC绑定成功");
 }
 
 async function check_meta_tags() {
