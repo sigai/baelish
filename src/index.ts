@@ -84,7 +84,7 @@ async function save() {
       button.getElementsByTagName("button")[0].click();
     }
   });
-  console.log("🔔baelish: ESC绑定成功");
+  console.log("🔔baelish: CTL+s绑定成功");
 }
 
 async function check_meta_tags() {
@@ -122,11 +122,22 @@ async function check_meta_tags() {
       './/*[translate(@name, "CONTENTSOURCE", "contentsource")="contentsource"]/@content'
     );
   }
+  if (document.getElementsByName("Author").length) {
+    console.log(
+      './/*[translate(@name, "AUTHOR", "author")="author"]/@content'
+    );
+  }
+  if (document.getElementsByName("Keywords").length) {
+    console.log(
+      './/*[translate(@name, "KEYWORDS", "keywords")="keywords"]/@content'
+    );
+  }
   // Wordpress站点发布日期meta标签检测
   let meta_pubdate = document.querySelectorAll('meta[content^="202"]');
   if (meta_pubdate.length > 0) {
     meta_pubdate.forEach(function (each, i) {
-      console.log("带有时间格式的meta标签" + i + ":", each);
+      i += 1;
+      console.log("带有时间格式的meta标签" + i  + ":", each);
       if (each.property && each.property.startsWith("article:")) {
         window.document.title = "💚" + window.document.title;
         setInterval(function () {

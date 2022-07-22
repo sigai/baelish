@@ -11,6 +11,7 @@ module.exports = {
   match: [
     '*://*/*'
   ],
+  connect: '*',
   require: [
     `https://cdn.jsdelivr.net/npm/jquery@${dependencies.jquery}/dist/jquery.min.js`,
     `https://cdn.jsdelivr.net/npm/axios@${dependencies.axios}/dist/axios.min.js`,
