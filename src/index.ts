@@ -122,12 +122,18 @@ async function check_meta_tags() {
       './/*[translate(@name, "CONTENTSOURCE", "contentsource")="contentsource"]/@content'
     );
   }
-  if (document.getElementsByName("Author").length) {
+  if (
+    document.getElementsByName("Author").length ||
+    document.getElementsByName("author").length
+    ) {
     console.log(
       './/*[translate(@name, "AUTHOR", "author")="author"]/@content'
     );
   }
-  if (document.getElementsByName("Keywords").length) {
+  if (
+    document.getElementsByName("Keywords").length ||
+    document.getElementsByName("keywords").length
+    ) {
     console.log(
       './/*[translate(@name, "KEYWORDS", "keywords")="keywords"]/@content'
     );
