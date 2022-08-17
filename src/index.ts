@@ -158,6 +158,41 @@ async function check_meta_tags() {
     });
   }
 }
+
+async function auto_refesh() {
+  setInterval(function () {
+    let refresh_button = document.getElementsByClassName("is-circle")[0];
+    console.log("🔔auto_refesh: 刷新按钮1", refresh_button);
+    if (!refresh_button){return}
+    if (document.getElementsByClassName("auto_refresh_button").length > 0){return}
+    console.log("🔔auto_refesh: 刷新按钮2", refresh_button);
+
+    var b = document.createElement("button")
+    b.textContent = "自动刷新"
+    b.classList.add("auto_refresh_button")
+    b.classList.add("el-button")
+    b.classList.add("el-button--success")
+    b.classList.add("el-button--mini")
+
+    b.onclick = function () {
+        var timer = setInterval(function(){
+          document.getElementsByClassName("el-icon-refresh")[0].click()
+        }, 1000*5)
+        b.id = timer
+        b.textContent = "停止刷新"
+        b.classList.remove("el-button--success")
+        b.classList.add("el-button--warning")
+        b.onclick = function(){
+            clearInterval(b.id)
+            b.remove()
+        }
+    }
+
+    refresh_button.after(b)
+
+  }, 1000);
+  console.log("🔔baelish: 自动刷新绑定成功")
+}
 class Ping {
   check() {
     setTimeout(() => {
@@ -184,6 +219,7 @@ async function main() {
       await save();
       let app = new Ping();
       app.check();
+      await auto_refesh().catch((e) => e);
     } else {
       await robots().catch((e) => `🔔未发现网站有robots.txt文件`);
       await sitemap().catch((e) => `🔔未发现网站有sitemap.xml文件`);

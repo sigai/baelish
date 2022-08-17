@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        CrawlerTools
 // @namespace   *.*
-// @version     0.0.4
+// @version     0.0.5
 // @author      fangtiansheng <fangtiansheng@gmail.com>
 // @source      https://github.com/Trim21/webpack-userscript-template
 // @icon        https://www.valuesimplex.com/images/favicon.ico
@@ -23,7 +23,7 @@
 /***/ "./package.json":
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"name":"webpack-userscript-template","description":"Build your UserScript with webpack","version":"0.0.4","author":{"name":"fangtiansheng","email":"fangtiansheng@gmail.com"},"scripts":{"postversion":"git push --follow-tags","analize":"npm_config_report=true npm run build","build":"webpack --mode production --config config/webpack.config.production.cjs","dev":"webpack --mode development --config config/webpack.config.dev.cjs"},"repository":{"type":"git","url":"https://github.com/Trim21/webpack-userscript-template"},"private":true,"dependencies":{"@trim21/gm-fetch":"^0.0.3","axios":"^0.27.2","axios-userscript-adapter":"^0.2.0","jquery":"^3.6.0"},"devDependencies":{"@babel/core":"^7.18.5","@babel/preset-env":"^7.18.2","@babel/preset-typescript":"^7.17.12","@types/greasemonkey":"^4.0.3","@types/jquery":"^3.5.14","babel-loader":"^8.2.5","browserslist":"^4.20.4","css-loader":"^6.7.1","less":"^4.1.3","less-loader":"^11.0.0","style-loader":"^3.3.1","typescript":"^4.7.4","userscript-metadata-webpack-plugin":"^0.1.1","webpack":"^5.73.0","webpack-bundle-analyzer":"^4.5.0","webpack-cli":"^4.10.0","webpack-livereload-plugin":"^3.0.2","webpack-merge":"^5.8.0"}}');
+module.exports = JSON.parse('{"name":"CrawlTool","description":"泛采系统专业版插件","version":"0.0.5","author":{"name":"fangtiansheng","email":"fangtiansheng@gmail.com"},"scripts":{"postversion":"git push --follow-tags","analize":"npm_config_report=true npm run build","build":"webpack --mode production --config config/webpack.config.production.cjs","dev":"webpack --mode development --config config/webpack.config.dev.cjs"},"repository":{"type":"git","url":"https://github.com/Trim21/webpack-userscript-template"},"private":true,"dependencies":{"@trim21/gm-fetch":"^0.0.3","axios":"^0.27.2","axios-userscript-adapter":"^0.2.0","jquery":"^3.6.0"},"devDependencies":{"@babel/core":"^7.18.5","@babel/preset-env":"^7.18.2","@babel/preset-typescript":"^7.17.12","@types/greasemonkey":"^4.0.3","@types/jquery":"^3.5.14","babel-loader":"^8.2.5","browserslist":"^4.20.4","css-loader":"^6.7.1","less":"^4.1.3","less-loader":"^11.0.0","style-loader":"^3.3.1","typescript":"^4.7.4","userscript-metadata-webpack-plugin":"^0.1.1","webpack":"^5.73.0","webpack-bundle-analyzer":"^4.5.0","webpack-cli":"^4.10.0","webpack-livereload-plugin":"^3.0.2","webpack-merge":"^5.8.0"}}');
 
 /***/ })
 
@@ -254,6 +254,47 @@ async function check_meta_tags() {
   }
 }
 
+async function auto_refesh() {
+  setInterval(function () {
+    let refresh_button = document.getElementsByClassName("is-circle")[0];
+    console.log("🔔auto_refesh: 刷新按钮1", refresh_button);
+
+    if (!refresh_button) {
+      return;
+    }
+
+    if (document.getElementsByClassName("auto_refresh_button").length > 0) {
+      return;
+    }
+
+    console.log("🔔auto_refesh: 刷新按钮2", refresh_button);
+    var b = document.createElement("button");
+    b.textContent = "自动刷新";
+    b.classList.add("auto_refresh_button");
+    b.classList.add("el-button");
+    b.classList.add("el-button--success");
+    b.classList.add("el-button--mini");
+
+    b.onclick = function () {
+      var timer = setInterval(function () {
+        document.getElementsByClassName("el-icon-refresh")[0].click();
+      }, 1000 * 5);
+      b.id = timer;
+      b.textContent = "停止刷新";
+      b.classList.remove("el-button--success");
+      b.classList.add("el-button--warning");
+
+      b.onclick = function () {
+        clearInterval(b.id);
+        b.remove();
+      };
+    };
+
+    refresh_button.after(b);
+  }, 1000);
+  console.log("🔔baelish: 自动刷新绑定成功");
+}
+
 class Ping {
   check() {
     setTimeout(() => {
@@ -281,6 +322,7 @@ async function main() {
       await save();
       let app = new Ping();
       app.check();
+      await auto_refesh().catch(e => e);
     } else {
       await robots().catch(e => `🔔未发现网站有robots.txt文件`);
       await sitemap().catch(e => `🔔未发现网站有sitemap.xml文件`);
