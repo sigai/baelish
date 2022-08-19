@@ -2,7 +2,16 @@ import { get } from "./utils";
 const { version } = require("../package.json");
 
 const interval = 1000 * 20;
-
+const GMMenus = [
+  {
+    name: '配置项',
+    fn: log,
+    accessKey: 'o'
+  }
+];
+async function log() {
+  alert("配置项")
+}
 async function init() {
   console.log(
     `%c 泛采系统专业版插件 %c v${version} %c`,
@@ -162,13 +171,13 @@ async function check_meta_tags() {
 async function auto_refesh() {
   setInterval(function () {
     let refresh_button = document.getElementsByClassName("is-circle")[0];
-    console.log("🔔auto_refesh: 刷新按钮1", refresh_button);
     if (!refresh_button){return}
+    console.log("🔔auto_refesh: 刷新按钮1", refresh_button);
     if (document.getElementsByClassName("auto_refresh_button").length > 0){return}
     console.log("🔔auto_refesh: 刷新按钮2", refresh_button);
 
     var b = document.createElement("button")
-    b.textContent = "自动刷新"
+    b.textContent = "自动"
     b.classList.add("auto_refresh_button")
     b.classList.add("el-button")
     b.classList.add("el-button--success")
@@ -179,7 +188,7 @@ async function auto_refesh() {
           document.getElementsByClassName("el-icon-refresh")[0].click()
         }, 1000*5)
         b.id = timer
-        b.textContent = "停止刷新"
+        b.textContent = "停止"
         b.classList.remove("el-button--success")
         b.classList.add("el-button--warning")
         b.onclick = function(){
@@ -210,6 +219,9 @@ class Ping {
 }
 
 async function main() {
+  GMMenus.forEach(m => {
+    GM.registerMenuCommand(m.name, m.fn, m.accessKey);
+  });
   if (location.hostname.startsWith("confluence")) {
     await show();
   } else {

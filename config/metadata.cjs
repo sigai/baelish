@@ -18,7 +18,9 @@ module.exports = {
     `https://cdn.jsdelivr.net/npm/axios-userscript-adapter@${dependencies['axios-userscript-adapter']}/dist/axiosGmxhrAdapter.min.js`,
   ],
   grant: [
-    'GM.xmlHttpRequest'
+    'GM.xmlHttpRequest',
+    "GM.registerMenuCommand",
+    "GM.unregisterMenuCommand"
   ],
-  'run-at': 'document-end'
+  'run-at': 'document-idle'
 }

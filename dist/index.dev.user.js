@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        CrawlerTools
 // @namespace   *.*
-// @version     0.0.4
+// @version     0.0.5
 // @author      fangtiansheng <fangtiansheng@gmail.com>
 // @source      https://github.com/Trim21/webpack-userscript-template
 // @icon        https://www.valuesimplex.com/images/favicon.ico
@@ -13,6 +13,8 @@
 // @require     https://cdn.jsdelivr.net/npm/axios-userscript-adapter@^0.2.0/dist/axiosGmxhrAdapter.min.js
 // @require     file:///Users/fangtiansheng/Documents/GitHub/baelish/dist/index.debug.user.js
 // @grant       GM.xmlHttpRequest
+// @grant       GM.registerMenuCommand
+// @grant       GM.unregisterMenuCommand
 // @run-at      document-end
 // ==/UserScript==
 
@@ -34,7 +36,7 @@
   \**************************/
 /***/ (() => {
 
-eval("/**\n * This is an empty javascript file for webpack to generate a development UserScript without real code.\n * So we could make UserScript manager load script file from local file path.\n * See webpack.config.dev.js for more details.\n */\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9jb25maWcvZW1wdHkuY2pzLmpzIiwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly93ZWJwYWNrLXVzZXJzY3JpcHQtdGVtcGxhdGUvLi9jb25maWcvZW1wdHkuY2pzP2FjYWIiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBUaGlzIGlzIGFuIGVtcHR5IGphdmFzY3JpcHQgZmlsZSBmb3Igd2VicGFjayB0byBnZW5lcmF0ZSBhIGRldmVsb3BtZW50IFVzZXJTY3JpcHQgd2l0aG91dCByZWFsIGNvZGUuXG4gKiBTbyB3ZSBjb3VsZCBtYWtlIFVzZXJTY3JpcHQgbWFuYWdlciBsb2FkIHNjcmlwdCBmaWxlIGZyb20gbG9jYWwgZmlsZSBwYXRoLlxuICogU2VlIHdlYnBhY2suY29uZmlnLmRldi5qcyBmb3IgbW9yZSBkZXRhaWxzLlxuICovXG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./config/empty.cjs\n");
+eval("/**\n * This is an empty javascript file for webpack to generate a development UserScript without real code.\n * So we could make UserScript manager load script file from local file path.\n * See webpack.config.dev.js for more details.\n */\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9jb25maWcvZW1wdHkuY2pzLmpzIiwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9DcmF3bFRvb2wvLi9jb25maWcvZW1wdHkuY2pzP2FjYWIiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBUaGlzIGlzIGFuIGVtcHR5IGphdmFzY3JpcHQgZmlsZSBmb3Igd2VicGFjayB0byBnZW5lcmF0ZSBhIGRldmVsb3BtZW50IFVzZXJTY3JpcHQgd2l0aG91dCByZWFsIGNvZGUuXG4gKiBTbyB3ZSBjb3VsZCBtYWtlIFVzZXJTY3JpcHQgbWFuYWdlciBsb2FkIHNjcmlwdCBmaWxlIGZyb20gbG9jYWwgZmlsZSBwYXRoLlxuICogU2VlIHdlYnBhY2suY29uZmlnLmRldi5qcyBmb3IgbW9yZSBkZXRhaWxzLlxuICovXG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./config/empty.cjs\n");
 
 /***/ })
 
