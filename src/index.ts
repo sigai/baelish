@@ -115,7 +115,7 @@ async function check_meta_tags() {
     document.getElementsByName("pubdate").length
   ) {
     console.log(
-      './/*[translate(@name, "PUBDATE", "pubdate")="pubdate"]/@content'
+      './/*[translate(@name, "PUBDATE", "pubdate")="pubdate" and contains(@content, "20")]/@content'
     );
   }
   if (document.getElementsByName("ColumnName").length) {
