@@ -6,6 +6,9 @@
     "moduleResolution": "Node",
     "module": "ESNext",
     "target": "ES2020",
-    "allowJs": true
+    "allowJs": true,
+    "checkJs": true,
+    "removeComments": true,
+    "noEmitOnError": true
   }
 }

@@ -184,17 +184,17 @@ async function auto_refesh() {
     b.classList.add("el-button--mini")
 
     b.onclick = function () {
-        var timer = setInterval(function(){
+        let timer = setInterval(function(){
           document.getElementsByClassName("el-icon-refresh")[0].click()
-        }, 1000*5)
-        b.id = timer
-        b.textContent = "停止"
-        b.classList.remove("el-button--success")
-        b.classList.add("el-button--warning")
+        }, 1000*5);
+        b.id = timer;
+        b.textContent = "停止";
+        b.classList.remove("el-button--success");
+        b.classList.add("el-button--warning");
         b.onclick = function(){
-            clearInterval(b.id)
-            b.remove()
-        }
+            clearInterval(b.id);
+            b.remove();
+        };
     }
 
     refresh_button.after(b)
