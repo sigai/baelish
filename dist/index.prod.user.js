@@ -8,8 +8,8 @@
 // @license     MIT
 // @match       *://*/*
 // @connect     *
-// @require     https://cdn.jsdelivr.net/npm/jquery@^3.6.0/dist/jquery.min.js
-// @require     https://cdn.jsdelivr.net/npm/axios@^0.27.2/dist/axios.min.js
+// @require     https://code.jquery.com/jquery-3.6.4.min.js
+// @require     https://unpkg.com/axios@1.3.5/dist/axios.min.js
 // @require     https://cdn.jsdelivr.net/npm/axios-userscript-adapter@^0.2.0/dist/axiosGmxhrAdapter.min.js
 // @grant       GM.xmlHttpRequest
 // @run-at      document-end
@@ -31,7 +31,7 @@ module.exports = JSON.parse('{"name":"CrawlTool","description":"泛采系统专�
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -45,14 +45,14 @@ module.exports = JSON.parse('{"name":"CrawlTool","description":"泛采系统专�
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -65,7 +65,7 @@ module.exports = JSON.parse('{"name":"CrawlTool","description":"泛采系统专�
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -77,12 +77,12 @@ module.exports = JSON.parse('{"name":"CrawlTool","description":"泛采系统专�
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/ 	
+/******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/ 	
+/******/
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
